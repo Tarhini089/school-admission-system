@@ -1,103 +1,91 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+export default function AdminPage() {
+  const statuses = {
+    Approved: 'bg-green-100 text-green-800',
+    Pending: 'bg-yellow-100 text-yellow-800',
+    Rescheduled: 'bg-blue-100 text-blue-800',
+    Rejected: 'bg-red-100 text-red-800',
+    'Contract sent': 'bg-orange-100 text-orange-800',
+    'Package Sent': 'bg-purple-100 text-purple-800',
+    Void: 'bg-gray-100 text-gray-800',
+    Submitted: 'bg-indigo-100 text-indigo-800',
+    Enrolled: 'bg-teal-100 text-teal-800'
+  };
+
+  const students = [
+    { id: 635146, sex: '♂', first: 'Ahmad', last: 'Yousaf', grade: 'Pre-k', school: 'Prev School A', status: 'Scheduled', update: '1 hr', note: 'Note' },
+    { id: 635146, sex: '♀', first: 'Rose', last: 'Charara', grade: 'KG', school: 'Prev School B', status: 'Approved', update: '4 hrs', note: 'Note' },
+    // Add more here
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      {/* Top Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-xl font-semibold">Admission Flow <span className="text-orange-500">TRACK: 2025-26</span></h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="flex items-center gap-4">
+          <button className="bg-white border px-4 py-2 rounded-lg">Show / Hide</button>
+          <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="mb-4 border-b">
+        <button className="py-2 px-4 border-b-2 border-blue-600 text-blue-600 font-medium">New applicants</button>
+        <button className="py-2 px-4 text-gray-600 hover:text-blue-600">Returning families</button>
+      </div>
+
+      {/* Search + total */}
+      <div className="flex justify-between items-center mb-4">
+        <p className="text-sm font-medium">All students <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs ml-2">Total: 100</span></p>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="border rounded-lg px-3 py-1 w-60"
+        />
+      </div>
+
+      {/* Table */}
+      <div className="overflow-auto rounded-lg border">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-100 text-gray-600 font-semibold">
+            <tr>
+              <th className="p-3 text-left">Student ID</th>
+              <th className="p-3 text-left">Sex</th>
+              <th className="p-3 text-left">First Name</th>
+              <th className="p-3 text-left">Last Name</th>
+              <th className="p-3 text-left">Grade level</th>
+              <th className="p-3 text-left">Previous school</th>
+              <th className="p-3 text-left">Phase</th>
+              <th className="p-3 text-left">Last update</th>
+              <th className="p-3 text-left">Notes</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {students.map((s, i) => (
+              <tr key={i} className="hover:bg-gray-50">
+                <td className="p-3">{s.id}</td>
+                <td className="p-3">{s.sex}</td>
+                <td className="p-3">{s.first}</td>
+                <td className="p-3">{s.last}</td>
+                <td className="p-3">{s.grade}</td>
+                <td className="p-3">{s.school}</td>
+                <td className="p-3">
+                  <span className={`px-2 py-1 rounded-full text-xs font-semibold ${statuses[s.status] || 'bg-gray-200 text-gray-700'}`}>
+                    {s.status}
+                  </span>
+                </td>
+                <td className="p-3">{s.update}</td>
+                <td className="p-3">{s.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
+ 
